@@ -29,14 +29,8 @@ public class DataBaseHelper extends SQLiteOpenHelper {
 
     private void updateDatabase(SQLiteDatabase db,int oldVersion, int newVersion){
         if (oldVersion<=1){
-            db.execSQL("CREATE TABLE HUMANS (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+            db.execSQL("CREATE TABLE SHOP (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     +"NAME TEXT);");
-
-
         }
-
-//        if (oldVersion<2){
-//            db.execSQL("ALTER TABLE HUMANS ADD COLUMN GIRLFRIEND");
-//        }
     }
 }

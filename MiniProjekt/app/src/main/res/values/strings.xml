@@ -3,4 +3,5 @@
     <string name="add_shop">add_shop</string>
     <string name="shop_name">Shop Name</string>
     <string name="create_shop">Create Shop</string>
+    <string name="delete_shop">Delete</string>
 </resources>
