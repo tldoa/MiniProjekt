@@ -4,4 +4,11 @@
     <string name="shop_name">Shop Name</string>
     <string name="create_shop">Create Shop</string>
     <string name="delete_shop">Delete</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_price">Product Price</string>
+    <string name="sale_price">Sale Price</string>
+    <string name="create_product">Create Product</string>
+    <string name="delete_product">Delete</string>
+    <string name="edit_product">Edit</string>
+    <string name="add_product">Add</string>
 </resources>
