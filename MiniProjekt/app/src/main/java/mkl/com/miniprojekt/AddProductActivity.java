@@ -28,7 +28,7 @@ public class AddProductActivity extends AppCompatActivity {
 
 //        int id = getIntent().getIntExtra("id", 0);
 
-//        Storage.addProduct(name, price, salePrice, id);
+//        Storage.addProduct(name, price, saleprice, id);
 //        Intent intent = new Intent(this, ProductListActivity.class);
 //        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 //        intent.putExtra("ProductID", id);
