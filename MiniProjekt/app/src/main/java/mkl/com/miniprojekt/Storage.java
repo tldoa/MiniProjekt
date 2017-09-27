@@ -4,14 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
-import android.view.MenuItem;
-
-import java.util.Calendar;
-import java.util.Date;
-
-import static android.webkit.ConsoleMessage.MessageLevel.LOG;
 
 /**
  * Created by MattiasKristenLyngdr on 21-09-2017.
@@ -39,19 +32,6 @@ public class Storage {
         Cursor cursor = db.query("SHOP",
                 new String[] {"_id", "NAME"},
                 null, null, null, null, null);
-
-        return cursor;
-    }
-
-    public static Cursor getProducts(int id) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-
-        Log.d("PENIS", "ShopID used By GetProduct In Storage : " + id);
-
-        Cursor cursor = db.query("PRODUCT",
-                new String[] {"_id", "NAME"},
-                "SHOP_ID = ?", new String[] {id + ""},
-                null, null, null);
         return cursor;
     }
 
@@ -74,19 +54,20 @@ public class Storage {
         db.close();
     }
 
-    public static void addProduct(String name, double price, double salePrice, int shopID) {
-        SQLiteDatabase db = dbHelper.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        Log.d("PENIS", "Id given to Add Product in Storage: " + shopID);
-        values.put("NAME", name);
-        values.put("PRICE", price);
-        values.put("SALE_PRICE", salePrice);
-        values.put("SHOP_ID", shopID);
-        db.insert("PRODUCT", null, values);
-        db.close();
-    }
+//    public static void addProduct(String name, double price, double salePrice, int shopID) {
+//        SQLiteDatabase db = dbHelper.getWritableDatabase();
+//
+//        ContentValues values = new ContentValues();
+//        Log.d("PENIS", "Id given to Add Product in Storage: " + shopID);
+//        values.put("NAME", name);
+//        values.put("PRICE", price);
+//        values.put("SALE_PRICE", salePrice);
+//        values.put("SHOP_ID", shopID);
+//        db.insert("PRODUCT", null, values);
+//        db.close();
+//    }
 
-    public static void addToShoppingList(int id, int qty) {
+    public static void addToShoppingList(long id, int qty) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put("PRODUCT_ID", id);
@@ -95,13 +76,63 @@ public class Storage {
         db.close();
     }
 
-    public static void removeShop(long item) {
+
+    public static void removeShop(long id){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.delete("SHOP", "_id = ?", new String[]{String.valueOf(item)});
+
+        String idToUse = String.valueOf(id);
+        db.execSQL("DELETE FROM SHOP WHERE _id = ?", new String[]{idToUse});
+        db.close();
     }
 
-    public static void removeProduct(long item) {
+    public static void removeProduct(long id){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
-        db.delete("PRODUCT", "_id = ?", new String[]{String.valueOf(item)});
+
+        String idToUse = String.valueOf(id);
+        db.execSQL("DELETE FROM PRODUCT WHERE _id = ?", new String[]{idToUse});
+        db.close();
+    }
+
+    public static void addProduct(Product product){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        ContentValues productValues = new ContentValues();
+        productValues.put("NAME", product.getName());
+        productValues.put("PRICE", product.getPrice());
+        productValues.put("SALEPRICE", product.getSalePrice());
+        productValues.put("SHOPID",product.getShopId());
+        productValues.put("QUANTITY", product.getQuantity());
+        db.insert("PRODUCT",null,productValues);
+        db.close();
+    }
+
+    public static Cursor getProducts(int id){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        String idToUse = String.valueOf(id);
+        Cursor cursor = db.rawQuery("SELECT * FROM PRODUCT WHERE SHOPID = ?", new String[]{idToUse});
+        return cursor;
+    }
+
+    public static Cursor getSingleProduct(long id){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        String idToUse = String.valueOf(id);
+        Cursor cursor = db.rawQuery("SELECT * FROM PRODUCT WHERE _id = ?", new String[]{idToUse});
+        cursor.moveToFirst();
+        return cursor;
+    }
+
+    public static void updateProduct(Product product, long id){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        String idToUse = String.valueOf(id);
+        ContentValues productValues = new ContentValues();
+        productValues.put("NAME", product.getName());
+        productValues.put("PRICE", product.getPrice());
+        productValues.put("SALEPRICE", product.getSalePrice());
+        productValues.put("QUANTITY", product.getQuantity());
+        db.update("PRODUCT",productValues,"_id = ?", new String[]{idToUse});
+        db.close();
     }
 }

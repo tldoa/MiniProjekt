@@ -19,11 +19,16 @@
             </intent-filter>
         </activity>
         <activity android:name=".AddShopActivity" />
+<!--<<<<<<< HEAD-->
         <activity
             android:name=".ProductListActivity"
             android:label="Products" />
         <activity android:name=".AddProductActivity" />
         <activity android:name=".ShoppingListActivity"></activity>
+<!--=======-->
+        <!--<activity android:name=".ProductListActivity" />-->
+        <!--<activity android:name=".AddProductActivity" />-->
+<!--&gt;>>>>>> 906f943dc8f9269aa1b8ed537c841f356d4cf759-->
     </application>
 
 </manifest>

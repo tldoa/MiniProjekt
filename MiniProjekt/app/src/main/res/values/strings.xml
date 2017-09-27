@@ -5,12 +5,15 @@
     <string name="create_shop">Create Shop</string>
     <string name="delete_shop">Delete</string>
     <string name="lbl_shops">Shops</string>
-    <string name="product_name">Product Name</string>
-    <string name="create_product">Add Product</string>
-    <string name="add_product">Add</string>
     <string name="add">Add</string>
-    <string name="delete_product">Delete</string>
-    <string name="edit_product">Edit</string>
     <string name="cancel">Cancel</string>
     <string name="shopping_list">Shopping List</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_price">Product Price</string>
+    <string name="sale_price">Sale Price</string>
+    <string name="create_product">Create Product</string>
+    <string name="delete_product">Delete</string>
+    <string name="edit_product">Edit</string>
+    <string name="add_product">Add</string>
+    <string name="product_quantity">Quantity</string>
 </resources>

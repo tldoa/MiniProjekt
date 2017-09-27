@@ -32,11 +32,16 @@ public class DataBaseHelper extends SQLiteOpenHelper {
             db.execSQL("CREATE TABLE SHOP (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     +"NAME TEXT);");
 
-            db.execSQL("CREATE TABLE PRODUCT (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
-                    +"NAME TEXT, PRICE TEXT, SALE_PRICE TEXT, SHOP_ID TEXT);");
-
             db.execSQL("CREATE TABLE SHOPPING_LIST (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
                     +"PRODUCT_ID TEXT, QTY TEXT);");
+
+            db.execSQL("CREATE TABLE PRODUCT (_id INTEGER PRIMARY KEY AUTOINCREMENT, "
+                    +"NAME TEXT, "
+                    +"PRICE INTEGER, "
+                    +"SALEPRICE REAL, "
+                    +"QUANTITY INTEGER, "
+                    +"SHOPID REAL, "
+                    +"FOREIGN KEY(SHOPID) REFERENCES SHOP(_id));");
         }
     }
 }
