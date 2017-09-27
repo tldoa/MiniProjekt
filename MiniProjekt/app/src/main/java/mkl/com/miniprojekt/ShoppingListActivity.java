@@ -47,12 +47,13 @@ public class ShoppingListActivity extends AppCompatActivity {
             saleprice = total + discount;
             productCursor.moveToNext();
         }
-//        TextView tv_total = (TextView) findViewById(R.id.tv_total);
-//        TextView tv_discount = (TextView) findViewById(R.id.tv_discount);
-//        TextView tv_salePrice = (TextView) findViewById(R.id.tv_sale_price);
-//        tv_total.setText("Total: " + total);
-//        tv_discount.setText("Total: " + discount);
-//        tv_salePrice.setText("Sale Price: " + saleprice);
+
+        TextView tv_total = (TextView) findViewById(R.id.tv_total);
+        TextView tv_discount = (TextView) findViewById(R.id.tv_discount);
+        TextView tv_salePrice = (TextView) findViewById(R.id.tv_sale_price);
+        tv_total.setText("Total: " + total);
+        tv_discount.setText("Total: " + discount);
+        tv_salePrice.setText("Sale Price: " + saleprice);
 
 
         final SimpleCursorAdapter cursorAdapter =
@@ -65,55 +66,6 @@ public class ShoppingListActivity extends AppCompatActivity {
                         0);
         listView.setAdapter(cursorAdapter);
 
-
-
-
-
-//        ArrayList<String> listOfIDs = new ArrayList<>();
-//      Find all PRODUCT ID's in the SHOPPING_LIST
-//        Cursor shoppingListCursor = db.query("SHOPPING_LIST", new String[]{"PRODUCT_ID"}, null, null, null, null, null);
-
-//      Add All ID's to ArrayList
-//        shoppingListCursor.moveToFirst();
-//        while (!shoppingListCursor.isAfterLast()) {
-//            listOfIDs.add(shoppingListCursor.getInt(0)+"");
-//            shoppingListCursor.moveToNext();
-//        }
-
-//      Convert ArrayList to Array
-//        String[] listOfIDsAsArray = listOfIDs.toArray(new String[listOfIDs.size()]);
-
-//      Find All PRODUCTS with the same ID as the PRODUCTS from the SHOPPING_LIST
-//        Cursor productCursor = db.query(
-//                "PRODUCT",
-//                new String[] {"NAME"},
-//                "_id IN ( ?, ?, ? )",
-//                listOfIDsAsArray,
-//                null, null, null);
-
-//        productCursor.moveToFirst();
-//        while (!productCursor.isAfterLast()) {
-//            Log.d("PENIS", productCursor.getString(0)+"");
-//            productCursor.moveToNext();
-//        }
-
     }
-
-//    public String myJoin(ArrayList listOfIDs) {
-//        String listOfIDsJoined = "";
-//
-//        for (int i = 0 ; i < listOfIDs.size() ; i++) {
-//            listOfIDsJoined += listOfIDs.get(i) + ", ";
-//        }
-//        return listOfIDsJoined.substring(0, listOfIDsJoined.length()-2);
-//    }
-
-//    public String makePlaceholder(int size) {
-//        String str = "";
-//        for (int j = 0 ; j < size ; j++) {
-//            str += "?, ";
-//        }
-//        return str.substring(0, str.length() - 2);
-//    }
 
 }
