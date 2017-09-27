@@ -47,21 +47,21 @@ public class ShoppingListActivity extends AppCompatActivity {
             saleprice = total + discount;
             productCursor.moveToNext();
         }
-        TextView tv_total = (TextView) findViewById(R.id.tv_total);
-        TextView tv_discount = (TextView) findViewById(R.id.tv_discount);
-        TextView tv_salePrice = (TextView) findViewById(R.id.tv_sale_price);
-        tv_total.setText("Total: " + total);
-        tv_discount.setText("Total: " + discount);
-        tv_salePrice.setText("Sale Price: " + saleprice);
+//        TextView tv_total = (TextView) findViewById(R.id.tv_total);
+//        TextView tv_discount = (TextView) findViewById(R.id.tv_discount);
+//        TextView tv_salePrice = (TextView) findViewById(R.id.tv_sale_price);
+//        tv_total.setText("Total: " + total);
+//        tv_discount.setText("Total: " + discount);
+//        tv_salePrice.setText("Sale Price: " + saleprice);
 
 
         final SimpleCursorAdapter cursorAdapter =
                 new SimpleCursorAdapter(
                         this,
-                        android.R.layout.simple_list_item_2,
+                        R.layout.shoppinglist_layout_list,
                         productCursor,
-                        new String[]{"NAME", "QTY"},
-                        new int[]{android.R.id.text1, android.R.id.text2},
+                        new String[]{"NAME","SALEPRICE","QTY"},
+                        new int[]{R.id.shoppinglist_product_name, R.id.shoppinglist_product_price, R.id.shoppinglist_product_quantity},
                         0);
         listView.setAdapter(cursorAdapter);
 

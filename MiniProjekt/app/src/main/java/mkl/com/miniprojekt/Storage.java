@@ -126,18 +126,15 @@ public class Storage {
 
     private static void dummyShops(){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-
         Cursor shopCursor = db.rawQuery("SELECT * FROM SHOP",null);
 
         if(shopCursor.getCount()==0){
             addShop("Netto");
             addShop("Føtex");
             addShop("Fakta");
-
         }
         shopCursor.close();
         db.close();
-
     }
 
     private static void dummyProducts(){
@@ -170,7 +167,6 @@ public class Storage {
             addProduct(new Product("Salsa",21,18,32,1));
             addProduct(new Product("Nachos",29.95,25,250,2));
             addProduct(new Product("Mozzarella",7.95,6,12,3));
-
         }
         productCursor.close();
         db.close();
