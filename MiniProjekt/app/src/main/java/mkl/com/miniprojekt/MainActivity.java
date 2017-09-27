@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -48,11 +49,14 @@ public class MainActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Cursor cursor = cursorAdapter.getCursor();
                 final int id = cursor.getInt(cursor.getColumnIndex("_id"));
+                final String name = cursor.getString(cursor.getColumnIndex("NAME"));
                 Intent intent = new Intent(MainActivity.this, ProductListActivity.class);
                 intent.putExtra("ProductID", (int) id);
+                intent.putExtra("ShopName", name);
                 startActivity(intent);
             }
         });
+
     }
 
     @Override
@@ -64,9 +68,12 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()){
-            case R.id.action_add_shop:
+            case R.id.action_add:
                 Intent intent = new Intent(this, AddShopActivity.class);
                 startActivity(intent);
+            case R.id.action_shopping_list:
+                Intent shoppingListIntent = new Intent(this, ShoppingListActivity.class);
+                startActivity(shoppingListIntent);
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -87,6 +94,17 @@ public class MainActivity extends AppCompatActivity {
         inflater.inflate(R.menu.menu_shop_context, menu);
     }
 
+    @Override
+    public boolean onContextItemSelected(MenuItem item) {
+        AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) item.getMenuInfo();
+        switch (item.getItemId()) {
+            case R.id.action_delete_shop:
+                Storage.removeShop(info.id);
+                Cursor newCurser = Storage.getShops();
+                ShopCursorAdapter adapter = (ShopCursorAdapter) listView.getAdapter();
+                adapter.changeCursor(newCurser);
+        }
 
-
+        return super.onContextItemSelected(item);
+    }
 }

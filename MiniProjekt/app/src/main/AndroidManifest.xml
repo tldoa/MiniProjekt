@@ -9,15 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/lbl_shops">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddShopActivity"></activity>
-        <activity android:name=".ProductListActivity"></activity>
+        <activity android:name=".AddShopActivity" />
+        <activity
+            android:name=".ProductListActivity"
+            android:label="Products" />
+        <activity android:name=".AddProductActivity" />
+        <activity android:name=".ShoppingListActivity"></activity>
     </application>
 
 </manifest>
