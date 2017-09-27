@@ -126,7 +126,6 @@ public class ProductListActivity extends AppCompatActivity {
         editAlert = editBuilder.create();
         LayoutInflater editProduct = LayoutInflater.from(this);
         editView = editProduct.inflate(R.layout.edit_product, null);
-
         editAlert.setView(editView);
 
     }
