@@ -7,6 +7,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.ContextMenu;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -23,12 +24,14 @@ import android.widget.SimpleCursorAdapter;
 public class ProductListActivity extends AppCompatActivity {
     private int shopId;
     private long productID;
+    private int quantitySelected;
     private String shopName;
     private Cursor cursor;
     private ListView pView;
     private AlertDialog editAlert;
     private AlertDialog addAlert;
     private View editView;
+    private int productQuantity;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +54,28 @@ public class ProductListActivity extends AppCompatActivity {
         add_product_builder.setCancelable(false)
                 .setPositiveButton("Add", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
-                        Storage.addToShoppingList(productID, 2);
+                        NumberPicker numberPicker = (NumberPicker) addAlert.findViewById(R.id.np_qty);
+                        quantitySelected = numberPicker.getValue();
+                        Storage.addToShoppingList(productID, quantitySelected);
+
+                        Cursor c = Storage.getSingleProduct(productID);
+                        Product product = new Product(
+                                c.getString(1),
+                                c.getInt(2),
+                                c.getInt(3),
+                                c.getInt(4),
+                                c.getInt(5)
+                        );
+
+                        int remainingQty = product.getQuantity() - quantitySelected;
+
+                        Log.d("PENIS", "Current QTY: " + product.getQuantity());
+                        Log.d("PENIS", "Selected QTY: " + quantitySelected);
+                        Log.d("PENIS", "new qty -> " + remainingQty);
+
+                        product.setQuantity(remainingQty);
+//                        numberPicker.setMaxValue(remainingQty);
+                        Storage.updateProduct(product, productID);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -112,14 +136,20 @@ public class ProductListActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 Cursor cursor = cursorAdapter.getCursor();
                 productID = cursor.getInt(cursor.getColumnIndex("_id"));
+                productQuantity = cursor.getInt(cursor.getColumnIndex("QUANTITY"));
                 final String name = cursor.getString(cursor.getColumnIndex("NAME"));
 
                 addAlert.setMessage("Add " + name + " to shopping list!");
                 addAlert.show();
 
                 final NumberPicker qty = (NumberPicker) addAlert.findViewById(R.id.np_qty);
-                qty.setMinValue(1);
-                qty.setMaxValue(10);
+                qty.setMinValue(0);
+
+                cursor = Storage.getProducts(shopId);
+                SimpleCursorAdapter adapter = (SimpleCursorAdapter) pView.getAdapter();
+                adapter.changeCursor(cursor);
+                
+                qty.setMaxValue(productQuantity);
             }
         });
 
