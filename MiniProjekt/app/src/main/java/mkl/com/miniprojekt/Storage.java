@@ -65,7 +65,6 @@ public class Storage {
         db.close();
     }
 
-
     public static void removeShop(long id){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 
@@ -140,6 +139,7 @@ public class Storage {
         db.close();
 
     }
+
     private static void dummyProducts(){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor productCursor = db.rawQuery("SELECT * FROM PRODUCT",null);
