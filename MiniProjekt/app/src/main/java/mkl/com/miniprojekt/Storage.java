@@ -18,6 +18,8 @@ public class Storage {
 
         if (uniqueInstance==null){
             uniqueInstance = new Storage(context);
+            dummyShops();
+            dummyProducts();
         }
         return uniqueInstance;
     }
@@ -53,19 +55,6 @@ public class Storage {
         Log.d("PENIS", "store id: " + storeID);
         db.close();
     }
-
-//    public static void addProduct(String name, double price, double salePrice, int shopID) {
-//        SQLiteDatabase db = dbHelper.getWritableDatabase();
-//
-//        ContentValues values = new ContentValues();
-//        Log.d("PENIS", "Id given to Add Product in Storage: " + shopID);
-//        values.put("NAME", name);
-//        values.put("PRICE", price);
-//        values.put("SALE_PRICE", salePrice);
-//        values.put("SHOP_ID", shopID);
-//        db.insert("PRODUCT", null, values);
-//        db.close();
-//    }
 
     public static void addToShoppingList(long id, int qty) {
         SQLiteDatabase db = dbHelper.getWritableDatabase();
@@ -136,7 +125,7 @@ public class Storage {
         db.close();
     }
 
-    private static void dummyData(){
+    private static void dummyShops(){
         SQLiteDatabase db = dbHelper.getReadableDatabase();
 
         Cursor shopCursor = db.rawQuery("SELECT * FROM SHOP",null);
@@ -147,20 +136,43 @@ public class Storage {
             addShop("Fakta");
 
         }
+        shopCursor.close();
+        db.close();
 
+    }
+    private static void dummyProducts(){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
         Cursor productCursor = db.rawQuery("SELECT * FROM PRODUCT",null);
 
         if(productCursor.getCount()==0){
-            Product p1 = new Product("Kylling",39.95,25,100,1);
-            Product p2 = new Product("Kylling",39.95,25,100,1);
-            Product p3 = new Product("Kylling",39.95,25,100,1);
-            Product p4 = new Product("Kylling",39.95,25,100,1);
-            Product p5 = new Product("Kylling",39.95,25,100,1);
-            Product p6 = new Product("Kylling",39.95,25,100,1);
-            Product p7 = new Product("Kylling",39.95,25,100,1);
 
+            addProduct(new Product("Kylling",39.95,25,100,1));
+            addProduct(new Product("Banan",3.95,2,200,2));
+            addProduct(new Product("Rugbrød",19.95,15,50,3));
+            addProduct(new Product("Mayonaise",99.95,32,1000,1));
+            addProduct(new Product("Ketchup",32.95,25,1000,2));
+            addProduct(new Product("Rullepølse",12.95,10,80,3));
+            addProduct(new Product("Spegepølse",27.95,25,70,1));
+            addProduct(new Product("Laks",98.75,50,87,2));
+            addProduct(new Product("Fanta",19.95,18,54,3));
+            addProduct(new Product("Cola",17.95,12,66,1));
+            addProduct(new Product("Remulade",13.95,10.95,42,2));
+            addProduct(new Product("Æble",2.95,2,90,3));
+            addProduct(new Product("Tun",7.95,4.95,27,1));
+            addProduct(new Product("Toiletpapir",23,10,32,2));
+            addProduct(new Product("Leverpostej",7.95,4.95,27,3));
+            addProduct(new Product("pate",117.95,24.95,27,1));
+            addProduct(new Product("Toiletpapir",23,10,32,2));
+            addProduct(new Product("Ananas",24.95,20,54,3));
+            addProduct(new Product("Ribeye",239.95,250,45,1));
+            addProduct(new Product("Ris",17.95,12,78,2));
+            addProduct(new Product("Pasta",18.75,10,77,3));
+            addProduct(new Product("Salsa",21,18,32,1));
+            addProduct(new Product("Nachos",29.95,25,250,2));
+            addProduct(new Product("Mozzarella",7.95,6,12,3));
 
         }
-
+        productCursor.close();
+        db.close();
     }
 }
