@@ -4,11 +4,18 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="mkl.com.miniprojekt.ShoppingListActivity">
+    tools:context="mkl.com.miniprojekt.ShoppingListActivity"
+    android:orientation="vertical">
+
 
     <ListView
         android:id="@+id/lv_shopping_list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:text="TISSSS"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

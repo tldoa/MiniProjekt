@@ -69,13 +69,12 @@ public class ProductListActivity extends AppCompatActivity {
 
                         int remainingQty = product.getQuantity() - quantitySelected;
 
-                        Log.d("PENIS", "Current QTY: " + product.getQuantity());
-                        Log.d("PENIS", "Selected QTY: " + quantitySelected);
-                        Log.d("PENIS", "new qty -> " + remainingQty);
-
                         product.setQuantity(remainingQty);
-//                        numberPicker.setMaxValue(remainingQty);
                         Storage.updateProduct(product, productID);
+
+                        cursor = Storage.getProducts(shopId);
+                        SimpleCursorAdapter adapter = (SimpleCursorAdapter) pView.getAdapter();
+                        adapter.changeCursor(cursor);
                     }
                 })
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -144,10 +143,6 @@ public class ProductListActivity extends AppCompatActivity {
 
                 final NumberPicker qty = (NumberPicker) addAlert.findViewById(R.id.np_qty);
                 qty.setMinValue(0);
-
-                cursor = Storage.getProducts(shopId);
-                SimpleCursorAdapter adapter = (SimpleCursorAdapter) pView.getAdapter();
-                adapter.changeCursor(cursor);
                 
                 qty.setMaxValue(productQuantity);
             }
@@ -169,6 +164,10 @@ public class ProductListActivity extends AppCompatActivity {
                 intent.putExtra("ShopID", shopId);
                 intent.putExtra("shopName",shopName);
                 startActivity(intent);
+                return true;
+            case R.id.action_shopping_list:
+                Intent shoppingListIntent = new Intent(this, ShoppingListActivity.class);
+                startActivity(shoppingListIntent);
             default:
                 return super.onOptionsItemSelected(item);
         }

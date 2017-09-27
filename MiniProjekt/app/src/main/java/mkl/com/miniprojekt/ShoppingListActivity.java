@@ -8,6 +8,9 @@ import android.widget.SimpleCursorAdapter;
 public class ShoppingListActivity extends AppCompatActivity {
 
     ListView listView;
+    double originalPrice;
+    double discount;
+    double total;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
