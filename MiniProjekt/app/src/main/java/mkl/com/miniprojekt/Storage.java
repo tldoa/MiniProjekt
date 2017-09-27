@@ -52,7 +52,6 @@ public class Storage {
         ContentValues values = new ContentValues();
         values.put("NAME", name);
         long storeID = db.insert("SHOP", null, values);
-        Log.d("PENIS", "store id: " + storeID);
         db.close();
     }
 

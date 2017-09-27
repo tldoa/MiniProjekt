@@ -57,7 +57,6 @@ public class ProductListActivity extends AppCompatActivity {
                         NumberPicker numberPicker = (NumberPicker) addAlert.findViewById(R.id.np_qty);
                         quantitySelected = numberPicker.getValue();
                         Storage.addToShoppingList(productID, quantitySelected);
-                        Log.d("MYTEST", "qty selected-> " + quantitySelected);
 
                         Cursor c = Storage.getSingleProduct(productID);
                         Product product = new Product(
