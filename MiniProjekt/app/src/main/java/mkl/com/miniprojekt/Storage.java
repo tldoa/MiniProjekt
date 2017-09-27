@@ -135,4 +135,32 @@ public class Storage {
         db.update("PRODUCT",productValues,"_id = ?", new String[]{idToUse});
         db.close();
     }
+
+    private static void dummyData(){
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+
+        Cursor shopCursor = db.rawQuery("SELECT * FROM SHOP",null);
+
+        if(shopCursor.getCount()==0){
+            addShop("Netto");
+            addShop("Føtex");
+            addShop("Fakta");
+
+        }
+
+        Cursor productCursor = db.rawQuery("SELECT * FROM PRODUCT",null);
+
+        if(productCursor.getCount()==0){
+            Product p1 = new Product("Kylling",39.95,25,100,1);
+            Product p2 = new Product("Kylling",39.95,25,100,1);
+            Product p3 = new Product("Kylling",39.95,25,100,1);
+            Product p4 = new Product("Kylling",39.95,25,100,1);
+            Product p5 = new Product("Kylling",39.95,25,100,1);
+            Product p6 = new Product("Kylling",39.95,25,100,1);
+            Product p7 = new Product("Kylling",39.95,25,100,1);
+
+
+        }
+
+    }
 }

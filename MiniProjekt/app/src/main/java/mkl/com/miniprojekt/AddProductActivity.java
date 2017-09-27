@@ -22,7 +22,7 @@ public class AddProductActivity extends AppCompatActivity {
         TextView productQuantity = (TextView) findViewById(R.id.txt_product_quantity);
 
         String name = productName.getText().toString();
-        double price = Double.parseDouble(productPrice.getText().toString()) ;
+        double price = Double.parseDouble(productPrice.getText().toString());
         double salePrice = Double.parseDouble(productSalePrice.getText().toString());
         int quantity = Integer.parseInt(productQuantity.getText().toString());
 

@@ -63,10 +63,10 @@ public class ProductListActivity extends AppCompatActivity {
         final SimpleCursorAdapter cursorAdapter =
                 new SimpleCursorAdapter(
                         this,
-                        android.R.layout.simple_list_item_2,
+                        R.layout.productlist_layout_list,
                         cursor,
-                        new String[]{"_id","NAME"},
-                        new int[]{android.R.id.text1, android.R.id.text2},
+                        new String[]{"NAME", "PRICE","QUANTITY"},
+                        new int[]{R.id.single_product_name, R.id.single_product_price, R.id.single_product_quantity},
                         0);
         pView.setAdapter(cursorAdapter);
 
