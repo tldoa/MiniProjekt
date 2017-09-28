@@ -83,6 +83,13 @@ public class ProductListActivity extends AppCompatActivity {
                         dialog.cancel();
                     }
                 });
+        addAlert = add_product_builder.create();
+
+        LayoutInflater add_product_inflater = LayoutInflater.from(this);
+        View addProductView = add_product_inflater.inflate(R.layout.add_product_to_shopping_list, null);
+
+        addAlert.setTitle("Add");
+        addAlert.setView(addProductView);
 
         final SimpleCursorAdapter cursorAdapter =
                 new SimpleCursorAdapter(
@@ -121,15 +128,12 @@ public class ProductListActivity extends AppCompatActivity {
             }
         });
 
+        editAlert = editBuilder.create();
 
+        LayoutInflater editProduct = LayoutInflater.from(this);
 
-        addAlert = add_product_builder.create();
-
-        LayoutInflater add_product_inflater = LayoutInflater.from(this);
-        View addProductView = add_product_inflater.inflate(R.layout.add_product_to_shopping_list, null);
-
-        addAlert.setTitle("Add");
-        addAlert.setView(addProductView);
+        editView = editProduct.inflate(R.layout.edit_product, null);
+        editAlert.setView(editView);
 
         pView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -149,10 +153,6 @@ public class ProductListActivity extends AppCompatActivity {
             }
         });
 
-        editAlert = editBuilder.create();
-        LayoutInflater editProduct = LayoutInflater.from(this);
-        editView = editProduct.inflate(R.layout.edit_product, null);
-        editAlert.setView(editView);
 
     }
 

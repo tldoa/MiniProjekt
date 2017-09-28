@@ -47,12 +47,12 @@ public class ShoppingListActivity extends AppCompatActivity {
             saleprice = total + discount;
             productCursor.moveToNext();
         }
-//        TextView tv_total = (TextView) findViewById(R.id.tv_total);
-//        TextView tv_discount = (TextView) findViewById(R.id.tv_discount);
-//        TextView tv_salePrice = (TextView) findViewById(R.id.tv_sale_price);
-//        tv_total.setText("Total: " + total);
-//        tv_discount.setText("Total: " + discount);
-//        tv_salePrice.setText("Sale Price: " + saleprice);
+        TextView tv_total = (TextView) findViewById(R.id.tv_total);
+        TextView tv_discount = (TextView) findViewById(R.id.tv_discount);
+        TextView tv_salePrice = (TextView) findViewById(R.id.tv_sale_price);
+        tv_total.setText("Total: " + total);
+        tv_discount.setText("Total: " + discount);
+        tv_salePrice.setText("Sale Price: " + saleprice);
 
 
         final SimpleCursorAdapter cursorAdapter =

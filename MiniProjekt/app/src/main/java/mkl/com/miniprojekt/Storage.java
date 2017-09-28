@@ -81,6 +81,14 @@ public class Storage {
         db.close();
     }
 
+    public static void removeShopProducts(long id){
+        SQLiteDatabase db = dbHelper.getWritableDatabase();
+
+        String idToUse = String.valueOf(id);
+        db.execSQL("DELETE FROM PRODUCT WHERE SHOPID = ?", new String[]{idToUse});
+        db.close();
+    }
+
     public static void addProduct(Product product){
         SQLiteDatabase db = dbHelper.getWritableDatabase();
 

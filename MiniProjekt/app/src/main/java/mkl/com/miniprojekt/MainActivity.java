@@ -101,6 +101,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.action_delete_shop:
                 Storage.removeShop(info.id);
+                Storage.removeShopProducts(info.id);
                 cursor = Storage.getShops();
                 ShopCursorAdapter adapter = (ShopCursorAdapter)listView.getAdapter();
                 adapter.changeCursor(cursor);
